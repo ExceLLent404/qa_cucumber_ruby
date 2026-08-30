@@ -1,0 +1,27 @@
+services:
+  tests:
+    build: .
+    environment:
+      CHROME_URL: http://chrome:4444
+    volumes:
+      - .:/tests
+      - bundle:/usr/local/bundle
+      - downloads:/tests/tmp/downloads
+      - home:/home/qa
+    depends_on:
+      - chrome
+  chrome:
+    image: selenium/standalone-chrome:151.0-chromedriver-151.0-20260808
+    environment:
+      SE_VNC_NO_PASSWORD: true
+    ports:
+      - "4444:4444"
+      - "7900:7900"
+    volumes:
+      - downloads:/home/seluser/Downloads
+    shm_size: 2gb
+
+volumes:
+  bundle:
+  downloads:
+  home:

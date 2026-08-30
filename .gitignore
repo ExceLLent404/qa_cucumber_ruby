@@ -1,0 +1,4 @@
+.devcontainer
+
+tmp/*
+!tmp/downloads/.gitkeep
